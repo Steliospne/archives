@@ -1,4 +1,4 @@
-class hashMap {
+module.exports = class hashMap {
   static #bucketList = Array.from({ length: 16 }, () => null);
   static #entries_count = 0;
   static #load_factor = 0.75;
@@ -29,8 +29,7 @@ class hashMap {
     //   error.message = "index provided is out of range";
     //   throw error;
     // }
-    if(this.#bucketList[hashCode] === null) 
-      this.#entries_count++;
+    if (this.#bucketList[hashCode] === null) this.#entries_count++;
     this.#bucketList[hashCode] = new Node(key, value);
 
     if (this.#entries_count > this.#bucketList.length * this.#load_factor) {
@@ -66,7 +65,7 @@ class hashMap {
   static remove(key) {
     if (hashMap.has(key)) {
       this.#bucketList[this.#position(key)] = null;
-      this.#entries_count--
+      this.#entries_count--;
       return true;
     }
     return false;
@@ -76,40 +75,32 @@ class hashMap {
     return this.#entries_count;
   }
 
-  // static length() {
-  //   let sum = 0;
-  //   this.#bucketList.forEach((el) => {
-  //     if (el !== undefined) {
-  //       sum++;
-  //     }
-  //   });
-  //   return sum;
-  // }
+  static clear() {
+    this.#bucketList = Array.from({ length: 16 }, () => null);
+  }
 
-  // static clear() {
-  //   this.#bucketList = [...Array(16)];
-  // }
+  static keys() {
+    const result = [];
+    for (let item of this.#bucketList) {
+      if (item) result.push(item.key);
+    }
+    return result;
+  }
 
-  // static keys() {
-  //   return this.#keyList.filter((el) => el !== undefined);
-  // }
+  static values() {
+    const result = [];
+    for (let item of this.#bucketList) {
+      if (item) result.push(item.value);
+    }
+    return result;
+  }
 
-  // static values() {
-  //   return this.#bucketList.filter((el) => el !== undefined);
-  // }
-
-  // static entries() {
-  //   const temp = [];
-  //   for (let i = 0; i < this.#bucketList.length; i++) {
-  //     if (this.#bucketList[i] !== undefined)
-  //       temp.push([this.#keyList[i], this.#bucketList[i]]);
-  //   }
-
-  //   return temp;
-  // }
-
-  static debug() {
-    console.log(this.#bucketList);
+  static entries() {
+    const result = [];
+    for (let item of this.#bucketList) {
+      if (item) result.push([item.key, item.value]);
+    }
+    return result;
   }
 }
 
@@ -121,29 +112,3 @@ class Node {
   }
 }
 
-hashMap.set('apple', 'red')
-hashMap.set('banana', 'yellow')
-hashMap.set('carrot', 'orange')
-hashMap.set('dog', 'brown')
-hashMap.set('elephant', 'gray')
-hashMap.set('frog', 'green')
-hashMap.set('grape', 'purple')
-hashMap.set('hat', 'black')
-hashMap.set('ice cream', 'white')
-hashMap.set('jacket', 'blue')
-hashMap.set('kite', 'pink')
-hashMap.set('lion', 'golden')
-hashMap.set('moon', 'silver')
-
-
-
-// console.log(hashMap.get("moon"));
-// console.log(hashMap.remove("moon"));
-console.log(hashMap.length());
-// console.log(hashMap.remove("Stelios"));
-// console.log(hashMap.length());
-// console.log(hashMap.keys());
-// console.log(hashMap.values());
-// console.log(hashMap.entries());
-
-hashMap.debug();
