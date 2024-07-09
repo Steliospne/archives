@@ -25,24 +25,24 @@ function binarySearch(target, arr = []) {
   }
 }
 
-const formatter = new Intl.NumberFormat("en-US", {
-  minimumFractionDigits: 5,
-  maximumFractionDigits: 5,
-});
+// const formatter = new Intl.NumberFormat("en-US", {
+//   minimumFractionDigits: 5,
+//   maximumFractionDigits: 5,
+// });
 
-let arr = [];
-for (let i = 1; i <= 600; i++) {
-  arr[i - 1] = i;
-}
+// let arr = [];
+// for (let i = 1; i <= 600; i++) {
+//   arr[i - 1] = i;
+// }
 
-let t1 = performance.now();
-let result1 = binarySearch(0, arr);
-let t2 = performance.now();
-let t3 = performance.now();
-let result2 = binarySearchRec(0, arr);
-let t4 = performance.now();
+// let t1 = performance.now();
+// let result1 = binarySearch(0, arr);
+// let t2 = performance.now();
+// let t3 = performance.now();
+// let result2 = binarySearchRec(0, arr);
+// let t4 = performance.now();
 
-console.log(`
-Result:" [${result1}] ${formatter.format(t2 - t1)} ms \n
-Result:" [${result2}] ${formatter.format(t4 - t3)} ms \n
-`);
+// console.log(`
+// Result:" [${result1}] ${formatter.format(t2 - t1)} ms \n
+// Result:" [${result2}] ${formatter.format(t4 - t3)} ms \n
+// `);
